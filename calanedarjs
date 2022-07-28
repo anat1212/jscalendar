@@ -43,3 +43,19 @@ createCalendar('calendar', 2012, 9);
 
 
 
+//Colored Clock app
+body = document.querySelector('body')
+div = document.createElement('div')
+
+setInterval(myTimer, 1000);
+
+function myTimer() {
+  let date = new Date();
+  hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours()
+	minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
+	seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()
+	div.innerHTML = `<span class="one">${hours}:</span><span class="two">${minutes}:</span><span class="three">${seconds}</span>`
+}
+
+body.insertBefore(div, body.querySelector('input'))
+
