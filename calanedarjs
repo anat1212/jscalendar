@@ -83,7 +83,45 @@ showNotification({
 });
 -------------------------------------------------------------------------
 
+ function positionAt(anchor, position, elem) {
+      div = document.createElement('div')
+      div.innerHTML = elem
+      div.style.position = "fixed"
+      div.style.border = 'solid'
+      div.style.padding = '2px'
+      body = document.querySelector('body')
+      let coords = anchor.getBoundingClientRect(); 
+      console.log(coords)
+      body.append(div)
+      if (position == "top") {
+        div.style.left =  `${coords.left}px`
+        div.style.top = `${coords.top - div.offsetHeight}px`
+      } else if (position == "right") {
+        div.style.left =  `${coords.right}px`
+        div.style.top = `${coords.top}px`
+      } else if (position == "bottom") {
+        div.style.left =  `${coords.left}px`
+        div.style.top = `${coords.bottom}px`
+      }
+      
+    }
 
+    /*
+     * Shows a note with the given html at the given position
+     * relative to the anchor element.
+     */
+    function showNote(anchor, position, html) {
+      positionAt(anchor, position, html)
+    }
+
+    // test it
+    blockquote = document.querySelector('blockquote');
+
+    showNote(blockquote, "top", "note above");
+    showNote(blockquote, "right", "note at the right");
+    showNote(blockquote, "bottom", "note below");
+    
+    -----------------------------------------------------------------------------
 
 
 
