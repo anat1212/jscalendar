@@ -172,5 +172,21 @@ showNotification({
 
 ---------------------------------------------------------------------------------------------------------
 
+field = document.getElementById('field')
+ball = document.getElementById('ball')
+
+field.onclick = function(event) {
+  ball.style.position = 'absolute'
+  ballCoords = ball.getBoundingClientRect()
+  fieldCoords = field.getBoundingClientRect()
+  console.log(ball.clientHeight)
+  frame = field.clientLeft
+  myX = ballCoords.width/2 + frame
+  myY = ballCoords.height/2 + frame
+  if (event.clientX > fieldCoords.x+myX && event.clientX < fieldCoords.right-myX && event.clientY > fieldCoords.y+myY && event.clientY < fieldCoords.bottom-myY) {
+    ball.style.left = `${event.clientX-ballCoords.width/2}px`
+    ball.style.top = `${event.clientY-ballCoords.height/2}px` 
+  }  
+}
 
 
