@@ -188,5 +188,28 @@ field.onclick = function(event) {
     ball.style.top = `${event.clientY-ballCoords.height/2}px` 
   }  
 }
+--------------------------------------------------------------------------
+
+lst = document.getElementById("lst")
+up = document.getElementById('up')
+down = document.getElementById('down')
+
+function handler1() {
+  this.style.display = "none"
+  down.style.display = "initial"
+  lst.style.display = "list-item"
+}
+
+function handler2() {
+  this.style.display = "none"
+  up.style.display = "initial"
+  lst.style.display = "none"
+}
+
+up.addEventListener("click", handler1)
+down.addEventListener("click", handler2)
+
+--------------------------------------------------------------------
+
 
 
