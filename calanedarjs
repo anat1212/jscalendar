@@ -211,5 +211,15 @@ down.addEventListener("click", handler2)
 
 --------------------------------------------------------------------
 
-
+table = document.querySelector("table")
+table.rows[1].cells[1].innerHTML
+table.addEventListener("click", function(event) {
+  if (event.target.dataset.type == "number") {
+    sortedRows = Array.from(table.rows).slice(1).sort(function(rowA, rowB) {return Number(rowA.cells[0].innerHTML) - Number(rowB.cells[0].innerHTML)})
+		table.tBodies[0].append(...sortedRows);
+  } else if (event.target.dataset.type == "string") {
+    sortedRows = Array.from(table.rows).slice(1).sort(function(rowA, rowB) {return rowA.cells[1].innerHTML > rowB.cells[1].innerHTML})
+		table.tBodies[0].append(...sortedRows);
+  }
+})
 
