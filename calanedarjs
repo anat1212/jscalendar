@@ -222,4 +222,18 @@ table.addEventListener("click", function(event) {
 		table.tBodies[0].append(...sortedRows);
   }
 })
+----------------------------------------------------------------------------------------------
 
+largeImg = document.getElementById("largeImg")
+thumbs = document.getElementById("thumbs")
+
+thumbs.addEventListener("click", function(event) {
+  event.preventDefault();
+  let target = event.target.closest('a');
+  
+  if (target && thumbs.contains(target)) {
+    largeImg.src = target.getAttribute('href')
+  } 
+})
+
+---------------------------------------------------
