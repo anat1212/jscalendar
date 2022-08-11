@@ -237,3 +237,23 @@ thumbs.addEventListener("click", function(event) {
 })
 
 ---------------------------------------------------
+ul = document.getElementById('ul')
+lis = document.getElementsByTagName("li")
+
+ul.onmousedown = function() {
+      return false;};
+
+
+ul.addEventListener("click", function(event) {
+  if (event.target.tagName == "LI") {
+    if (event.ctrlKey || event.metaKey) {
+    event.target.classList.toggle("selected");
+  	} else {
+      for (let li of lis) {
+      li.classList.remove("selected")
+    }
+    event.target.classList.add("selected");
+    }
+    
+  }  
+})
