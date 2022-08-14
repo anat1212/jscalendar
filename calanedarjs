@@ -257,3 +257,122 @@ ul.addEventListener("click", function(event) {
     
   }  
 })
+-----------------------------------------------------------------------------------
+
+
+
+
+coords = slider.getBoundingClientRect()
+// coords.x coords.y coords.right
+currentDroppable = null;
+
+thumb = document.querySelector('.thumb')
+
+thumb.onmousedown = function(event) {
+  let shiftX = event.clientX - thumb.getBoundingClientRect().x;
+  let shiftY = thumb.getBoundingClientRect().y;
+  
+  thumb.style.position = 'absolute';
+  thumb.style.zIndex = 1000;
+  document.body.append(thumb);
+  
+  moveAt(event.pageX, event.pageY);
+
+  function moveAt(pageX, pageY) {
+    if (pageX >= coords.right) {
+      thumb.style.left = coords.right - thumb.offsetWidth + 'px'
+      thumb.style.top = shiftY + 'px';
+    } else if (pageX <= coords.x) {
+      thumb.style.left = coords.x + 'px'
+      thumb.style.top = shiftY + 'px';
+    } else {
+      thumb.style.left = pageX - shiftX + 'px';
+    	thumb.style.top = shiftY + 'px';
+    }
+    
+  }
+  
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+    thumb.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    thumb.hidden = false;
+
+    if (elemBelow) {
+      let droppableBelow = elemBelow.closest('.slider');
+      if (currentDroppable != droppableBelow) {
+        currentDroppable = droppableBelow;
+        }
+      }
+	}
+  document.addEventListener('mousemove', onMouseMove);
+  
+  document.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    thumb.onmouseup = null
+  }
+}
+
+thumb.ondragstart = function() {
+  return false;
+  
+  
+  
+};
+---------------------------------------------------------------------------------------------------------------------------------
+
+coords = slider.getBoundingClientRect()
+// coords.x coords.y coords.right
+currentDroppable = null;
+
+thumb = document.querySelector('.thumb')
+
+thumb.onmousedown = function(event) {
+  let shiftX = event.clientX - thumb.getBoundingClientRect().x;
+  let shiftY = thumb.getBoundingClientRect().y;
+  
+  thumb.style.position = 'absolute';
+  thumb.style.zIndex = 1000;
+  document.body.append(thumb);
+  
+  moveAt(event.pageX, event.pageY);
+
+  function moveAt(pageX, pageY) {
+    if (pageX >= coords.right) {
+      thumb.style.left = coords.right - thumb.offsetWidth + 'px'
+      thumb.style.top = shiftY + 'px';
+    } else if (pageX <= coords.x) {
+      thumb.style.left = coords.x + 'px'
+      thumb.style.top = shiftY + 'px';
+    } else {
+      thumb.style.left = pageX - shiftX + 'px';
+    	thumb.style.top = shiftY + 'px';
+    }
+    
+  }
+  
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+    thumb.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    thumb.hidden = false;
+
+    if (elemBelow) {
+      let droppableBelow = elemBelow.closest('.slider');
+      if (currentDroppable != droppableBelow) {
+        currentDroppable = droppableBelow;
+        }
+      }
+	}
+  document.addEventListener('mousemove', onMouseMove);
+  
+  document.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    thumb.onmouseup = null
+  }
+}
+
+thumb.ondragstart = function() {
+  return false;
+};
+------------------------------------------
