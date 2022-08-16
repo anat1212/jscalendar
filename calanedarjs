@@ -376,3 +376,21 @@ thumb.ondragstart = function() {
   return false;
 };
 ------------------------------------------
+
+arrowTop.style.display = 'none'
+
+window.addEventListener('scroll', function(event) {
+  coords = document.documentElement.getBoundingClientRect();
+  if (Math.abs(coords.y) >= coords.height) {
+    arrowTop.style.display = ''
+  } else {
+    arrowTop.style.display = 'none'
+  }
+})
+
+arrowTop.addEventListener('click', function(event) {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+})
+------------------------------------------------------
+
+
