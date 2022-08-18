@@ -428,5 +428,30 @@ textarea.onkeydown = function(event) {
   }
 }
 -------------------------------------------------
+mouse.tabIndex = 0
+
+mouse.onclick = function(event) {
+  this.focus()
+  console.log(this)
+  this.style.position = 'fixed';
+  this.style.zIndex = 1000;
+  
+  this.onkeydown = function(event) {
+    xCoord = this.getBoundingClientRect().x;
+    yCoord = this.getBoundingClientRect().y;
+    if (event.key == 'ArrowLeft') {
+      this.style.left = xCoord - this.offsetWidth + 'px'
+    } else if (event.key == 'ArrowRight') {
+      this.style.left = xCoord + this.offsetWidth + 'px'
+    } else if (event.key == 'ArrowDown') {
+      this.style.top = yCoord + this.offsetWidth + 'px'
+      console.log('down')
+    } else if (event.key == 'ArrowUp') {
+      this.style.top = yCoord - this.offsetWidth + 'px'
+      console.log('up')
+    }
+  }
+}
+--------------------------------------------------------------------------------------------
 
 
