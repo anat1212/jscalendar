@@ -393,4 +393,40 @@ arrowTop.addEventListener('click', function(event) {
 })
 ------------------------------------------------------
 
+view.tabIndex = 0
+
+textarea = document.createElement("TEXTAREA");
+textarea.classList.add('edit');
+textarea.classList.add('view');
+document.body.appendChild(textarea);
+textarea.style.display = 'none'
+
+view.onfocus = function(event) {
+  this.classList.add('edit');
+  view.style.display = 'none'
+  textarea.style.display = ''
+  textarea.focus()
+}
+
+textarea.onkeyup = function(event) {
+  view.innerHTML = textarea.value
+}
+
+textarea.onblur = function() {
+  textarea.style.display = 'none'
+  view.style.display = ''
+  view.classList.remove('edit');
+  view.classList.remove('view');
+}
+
+textarea.onkeydown = function(event) {
+  if (event.key == 'Enter') {
+    textarea.style.display = 'none'
+  	view.style.display = ''
+    view.classList.remove('edit');
+    view.classList.remove('view');
+  }
+}
+-------------------------------------------------
+
 
