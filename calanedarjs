@@ -454,6 +454,7 @@ mouse.onclick = function(event) {
 }
 --------------------------------------------------------------------------------------------
 
+
 table = document.getElementById('bagua-table');
 textarea = document.createElement("TEXTAREA");
 textarea.classList.add('textarea');
@@ -464,6 +465,22 @@ textarea.tabIndex = 0
 document.body.appendChild(textarea);
 selectedTd = false;
 selectedColor = null;
+
+buttonOK = document.createElement("BUTTON");
+buttonOK.type = "button"
+buttonOK.innerText = "OK"
+buttonOK.style.display = 'none'
+buttonOK.style.position = 'absolute';
+buttonOK.style.zIndex = 1001;
+document.body.appendChild(buttonOK);
+
+buttonCANCEL = document.createElement("BUTTON");
+buttonCANCEL.type = "button"
+buttonCANCEL.innerText = "CANCEL"
+buttonCANCEL.style.display = 'none'
+buttonCANCEL.style.position = 'absolute';
+buttonCANCEL.style.zIndex = 1002;
+document.body.appendChild(buttonCANCEL);
 
 table.onclick = function(event) {
   if (selectedTd) {
@@ -487,8 +504,32 @@ table.onclick = function(event) {
     textarea.innerHTML = target.innerHTML
     
     textarea.style.display = ''
-    textarea.focus()
+    textarea.focus() 
+    buttonOK.style.top = coords.height + coords.y + 4 + 'px'
+    buttonOK.style.left = coords.x + 35 + 'px'
+    buttonOK.style.display = ''
+    
+    buttonCANCEL.style.top = coords.height + coords.y + 4 + 'px'
+    buttonCANCEL.style.left = coords.x + 70 + 'px'
+    buttonCANCEL.style.display = ''
+    buttonCANCEL.style.height = buttonOK.style.height
+    
+    buttonOK.onclick = function() {
+      target.innerHTML = textarea.value
+      textarea.style.display = 'none'
+      selectedTd = false;
+			selectedColor = null;
+      target.focus()
+    }
+    
+    buttonCANCEL.onclick = function() {
+      textarea.style.display = 'none'
+      selectedTd = false;
+			selectedColor = null;
+      target.focus()
+    }
   }
 }
+
 
 -----------------------------------------------------------------------------------
