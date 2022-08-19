@@ -466,8 +466,13 @@ selectedTd = false;
 selectedColor = null;
 
 table.onclick = function(event) {
+  if (selectedTd) {
+    textarea.focus()
+    return
+  }
   let target = event.target;
   if (target.tagName == 'TD') {
+    selectedTd = target
     target.tabIndex = 0
     target.focus()
     let coords = target.getBoundingClientRect()
@@ -485,4 +490,5 @@ table.onclick = function(event) {
     textarea.focus()
   }
 }
+
 -----------------------------------------------------------------------------------
