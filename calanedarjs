@@ -454,4 +454,35 @@ mouse.onclick = function(event) {
 }
 --------------------------------------------------------------------------------------------
 
+table = document.getElementById('bagua-table');
+textarea = document.createElement("TEXTAREA");
+textarea.classList.add('textarea');
+textarea.style.display = 'none'
+textarea.style.position = 'absolute';
+textarea.style.zIndex = 1000;
+textarea.tabIndex = 0
+document.body.appendChild(textarea);
+selectedTd = false;
+selectedColor = null;
 
+table.onclick = function(event) {
+  let target = event.target;
+  if (target.tagName == 'TD') {
+    target.tabIndex = 0
+    target.focus()
+    let coords = target.getBoundingClientRect()
+    textarea.style.left = coords.x + 'px'
+    textarea.style.top = coords.y + 'px'
+    textarea.style.height = coords.height-24 + 'px'
+    if (selectedColor) {
+      textarea.classList.remove(selectedColor)
+    }
+    textarea.classList.add(target.classList[0])
+    selectedColor = target.classList[0]
+    textarea.innerHTML = target.innerHTML
+    
+    textarea.style.display = ''
+    textarea.focus()
+  }
+}
+-----------------------------------------------------------------------------------
